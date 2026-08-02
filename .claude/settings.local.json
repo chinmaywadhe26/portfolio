@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"console.log\\('JS syntax OK'\\)\" -c js/main.js)",
+      "Bash(node --check js/main.js)"
+    ]
+  }
+}

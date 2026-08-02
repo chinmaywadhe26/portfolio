@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[Your Name] — Portfolio</title>
+  <meta name="description" content="[Short one-line description of what you do]" />
+
+  <!-- apply saved theme before paint to avoid a flash -->
+  <script>(function () { try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {} })();</script>
+
+  <!-- Fonts: serif display + clean sans + mono labels -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css?v=25" />
+</head>
+<body>
+  <!-- ===================== PRELOADER ===================== -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__panels" aria-hidden="true">
+      <span class="pl-panel pl-panel--top"></span>
+      <span class="pl-panel pl-panel--bottom"></span>
+    </div>
+    <div class="preloader__content">
+      <span class="preloader__tag">Portfolio © '26</span>
+      <span class="preloader__tag preloader__tag--right">Crafting Taste…</span>
+      <span class="pl-line pl-line--h"></span>
+      <span class="pl-line pl-line--v"></span>
+      <div class="pl-mark">
+        <svg class="pl-ring" viewBox="0 0 200 200" aria-hidden="true">
+          <defs><path id="plTextPath" d="M100,100 m-82,0 a82,82 0 1,1 164,0 a82,82 0 1,1 -164,0"></path></defs>
+          <g class="pl-ring__circles">
+            <circle class="pl-ring__track" cx="100" cy="100" r="60"></circle>
+            <circle class="pl-ring__draw" id="plRing" cx="100" cy="100" r="60"></circle>
+          </g>
+          <!-- Replace "Your Name" with your real name -->
+          <text class="pl-ring__text"><textPath href="#plTextPath" startOffset="0">Chinmay&nbsp;Wadhe&nbsp;&nbsp;✳&nbsp;&nbsp;Chinmay&nbsp;Wadhe&nbsp;&nbsp;✳&nbsp;&nbsp;Chinmay&nbsp;Wadhe&nbsp;&nbsp;✳&nbsp;&nbsp;</textPath></text>
+        </svg>
+        <span class="pl-num" id="preloaderCountNum">0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== CUSTOM CURSOR ===================== -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__dot" id="cursorDot"></div>
+    <div class="cursor__capsule" id="cursorCapsule"><span class="cursor__cat"></span><span class="cursor__label" id="cursorLabel"></span></div>
+    <svg class="cursor__badge" id="cursorBadge" viewBox="0 0 120 120">
+      <defs>
+        <path id="cursorTextPath" d="M60,60 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0" />
+      </defs>
+      <circle class="cursor__badge-disc" cx="60" cy="60" r="54" />
+      <text>
+        <textPath href="#cursorTextPath" startOffset="0">VIEW&nbsp;&nbsp;✳&nbsp;&nbsp;VIEW&nbsp;&nbsp;✳&nbsp;&nbsp;VIEW&nbsp;&nbsp;✳&nbsp;&nbsp;</textPath>
+      </text>
+      <svg class="cursor__badge-arrow" x="46" y="46" width="28" height="28" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+    </svg>
+  </div>
+
+  <!-- ===================== GRAIN OVERLAY ===================== -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Floating image that follows the cursor over project rows (kept outside
+       <main> so the page-skew transform can't become its containing block) -->
+  <div class="work__preview" id="workPreview"></div>
+
+  <!-- ===================== PROGRESS BAR ===================== -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__brand" data-magnetic data-cursor="wrap">
+      <span class="nav__mark">◖</span>
+      <span class="nav__name">[Chinmay Wadhe]</span>
+    </a>
+    <nav class="nav__links">
+      <a href="#work" data-link data-cursor="wrap">Work</a>
+      <a href="#about" data-link data-cursor="wrap">About</a>
+      <a href="#services" data-link data-cursor="wrap">Services</a>
+      <a href="#contact" data-link data-cursor="wrap">Contact</a>
+    </nav>
+    <div class="nav__right">
+      <button class="theme-toggle" id="themeToggle" data-magnetic aria-label="Toggle dark mode">
+        <svg class="theme-toggle__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+          <path d="M12 3.5 A8.5 8.5 0 0 1 12 20.5 Z" fill="currentColor"></path>
+        </svg>
+      </button>
+      <a href="#contact" class="nav__cta" data-magnetic data-cursor="wrap">
+        <span>Let's talk</span>
+        <span class="nav__cta-dot"></span>
+      </a>
+    </div>
+    <button class="nav__burger" id="burger" aria-label="Menu"><span></span><span></span></button>
+  </header>
+
+  <!-- ===================== MOBILE MENU ===================== -->
+  <div class="menu" id="menu">
+    <nav class="menu__links">
+      <a href="#work" data-menu-link><span>01</span> Work</a>
+      <a href="#about" data-menu-link><span>02</span> About</a>
+      <a href="#services" data-menu-link><span>03</span> Services</a>
+      <a href="#contact" data-menu-link><span>04</span> Contact</a>
+    </nav>
+    <div class="menu__foot">
+      <a href="mailto:hello@example.com">hello@example.com</a>
+      <span>Based in Pune, India</span>
+    </div>
+  </div>
+
+  <main id="top">
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="hero">
+      <div class="hero__top">
+        <span class="eyebrow" data-reveal>( Engineering grad — '26 )</span>
+        <span class="eyebrow eyebrow--right" data-reveal>Available for Software Dev roles</span>
+      </div>
+
+      <h1 class="hero__title">
+        <span class="line" data-split data-cursor="big">Developer</span>
+        <span class="line" data-split data-cursor="big">Shipping with <em>Taste</em>,</span>
+        <span class="line line--indent" data-split data-cursor="big">not templates.</span>
+      </h1>
+
+      <div class="hero__bottom">
+        <p class="hero__lead" data-reveal>
+          I'm <strong>Chinmay</strong> — a Fullstack Developer based in Pune.
+          Here to ship products with intention, taste, and motion.
+        </p>
+        <a href="#work" class="hero__badge" data-magnetic aria-label="Scroll to explore">
+          <svg viewBox="0 0 120 120" class="hero__badge-ring">
+            <defs><path id="heroCirclePath" d="M60,60 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0" /></defs>
+            <text><textPath href="#heroCirclePath" startOffset="0">Scroll&nbsp;to&nbsp;explore&nbsp;&nbsp;✳&nbsp;&nbsp;Scroll&nbsp;to&nbsp;explore&nbsp;&nbsp;✳&nbsp;&nbsp;</textPath></text>
+          </svg>
+          <span class="hero__badge-arrow">↓</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===================== MARQUEE ===================== -->
+    <section class="marquee" aria-hidden="true">
+      <div class="marquee__row">
+        <div class="marquee__track marquee__track--outline" data-marquee="-1">
+          <span>Brand <i class="ac">✳</i> Web <i class="ac">✳</i> Motion <i class="ac">✳</i> Interaction <i class="ac">✳</i> UX <i class="ac">✳</i>&nbsp;</span>
+          <span>Brand <i class="ac">✳</i> Web <i class="ac">✳</i> Motion <i class="ac">✳</i> Interaction <i class="ac">✳</i> UX <i class="ac">✳</i>&nbsp;</span>
+        </div>
+      </div>
+      <div class="marquee__row">
+        <div class="marquee__track" data-marquee="1">
+                    <span>Design <i class="ac">✳</i> React.js <i class="ac">✳</i> Next.js <i class="ac">✳</i> Typescript <i class="ac">✳</i> UI Components <i class="ac">✳</i>&nbsp;</span>
+          <span>Design <i class="ac">✳</i> React.js <i class="ac">✳</i> Next.js <i class="ac">✳</i> Typescript <i class="ac">✳</i> UI Components <i class="ac">✳</i>&nbsp;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT / STATEMENT ===================== -->
+    <section class="statement" id="about">
+      <span class="section-label" data-reveal><i>01</i> About</span>
+      <p class="statement__text" data-cursor="big">
+        <span data-words>I believe good design is felt before it's understood. I like to work at the
+        intersection of strategy, craft and motion — building things that are clear, and a little bit unexpected.</span>
+      </p>
+      <div class="statement__meta">
+        <div class="statement__col" data-reveal>
+          <h4>What I do</h4>
+          <ul>
+            <li>Frontend Development</li>
+            <li>Web Design</li>
+            <li>Backend Development</li>
+            <li>Motion &amp; Interactions</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STATS ===================== -->
+    <section class="stats" id="stats">
+      <div class="stat" data-reveal>
+        <span class="stat__num"><span data-count="8">0</span><i>+</i></span>
+        <span class="stat__label">Projects built</span>
+      </div>
+      <div class="stat" data-reveal>
+        <span class="stat__num"><span data-count="4">0</span></span>
+        <span class="stat__label">Years of craft</span>
+      </div>
+    </section>
+
+    <!-- ===================== EXPERIENCE ===================== -->
+    <section class="experience" id="experience">
+      <div class="experience__head">
+        <span class="section-label" data-reveal><i>02</i> Experience</span>
+        <span class="experience__note" data-reveal>Where I've been</span>
+      </div>
+
+      <article class="exp" data-reveal>
+        <div class="exp__period">
+          <span class="exp__dates">Jul 2025 — Jun 2026</span>
+          <span class="exp__len"><span class="exp__pulse"></span> 1 year</span>
+        </div>
+        <div class="exp__body">
+          <h3 class="exp__role" data-cursor="big">R&D <em>Intern</em></h3>
+          <a class="exp__company" href="#" data-magnetic>
+            @ Parametric Technology Corporation (PTC) <span class="exp__arrow">↗</span>
+          </a>
+          <p class="exp__desc">
+            My first chapter in the industry — modernizing enterprise systems at scale. 
+            I migrated 10+ legacy AngularJS components to Angular 19, built RxJS-based 
+            asynchronous workflows across distributed services, and developed reusable 
+            Web Components for framework-agnostic architecture. This taught me system 
+            design, cross-team collaboration, and how to balance technical debt with 
+            modern patterns in production environments.
+          </p>
+          <ul class="exp__tags">
+            <li>Angular</li>
+            <li>AngularJs</li>
+            <li>Typescript</li>
+            <li>HTML &amp; SCSS</li>
+            <li>RxJs</li>
+            <li>Responsive Design</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <!-- ===================== SELECTED WORK ===================== -->
+    <section class="work" id="work">
+      <div class="work__head">
+        <span class="section-label" data-reveal data-parallax="30"><i>03</i> Selected Work</span>
+        <span class="work__count" data-reveal data-parallax="-30">04 Projects</span>
+      </div>
+
+      <ul class="work__list" id="workList">
+        <li class="work__item" data-preview-color="#c9b8a3">
+          <a href="https://github.com/chinmaywadhe26/imgXchange" data-project data-cursor="project">
+            <span class="work__index">01</span>
+            <span class="work__name">ImgxChange</span>
+            <span class="work__tags">Web · FullStack</span>
+            <span class="work__year">2024</span>
+          </a>
+        </li>
+        <li class="work__item" data-preview-color="#a8b5a0">
+          <a href="https://github.com/Suyash-shinde/Smart-Inventory" data-project data-cursor="project">
+            <span class="work__index">02</span>
+            <span class="work__name">Smart Inventory</span>
+            <span class="work__tags">FullStack · Inventory</span>
+            <span class="work__year">2025</span>
+          </a>
+        </li>
+        <!-- <li class="work__item" data-preview-color="#b9a0b0">
+          <a href="#" data-project data-cursor="project">
+            <span class="work__index">03</span>
+            <span class="work__name">Bondify</span>
+            <span class="work__tags">Socket.io · Development</span>
+            <span class="work__year">2025</span>
+          </a>
+        </li> -->
+      </ul>
+    </section>
+
+    <!-- ===================== HORIZONTAL GALLERY ===================== -->
+    <!-- <section class="gallery" id="gallery">
+      <div class="gallery__intro">
+        <span class="section-label"><i>✳</i> In the field</span>
+        <p>A scroll through recent frames — drag your eyes across.</p>
+      </div>
+      <div class="gallery__viewport">
+        <div class="gallery__track" id="galleryTrack">
+          <figure class="card" style="--c:#c9b8a3"><span class="card__no">01</span><h4 data-cursor="wrap">[Snapshot One]</h4><span class="card__tag">Brand</span></figure>
+          <figure class="card" style="--c:#a8b5a0"><span class="card__no">02</span><h4 data-cursor="wrap">[Snapshot Two]</h4><span class="card__tag">Web</span></figure>
+          <figure class="card" style="--c:#b9a0b0"><span class="card__no">03</span><h4 data-cursor="wrap">[Snapshot Three]</h4><span class="card__tag">Motion</span></figure>
+          <figure class="card" style="--c:#9fb0bd"><span class="card__no">04</span><h4 data-cursor="wrap">[Snapshot Four]</h4><span class="card__tag">Identity</span></figure>
+          <figure class="card" style="--c:#c2a98e"><span class="card__no">05</span><h4 data-cursor="wrap">[Snapshot Five]</h4><span class="card__tag">Art Direction</span></figure>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- ===================== SERVICES ===================== -->
+    <section class="services" id="services">
+      <span class="section-label section-label--light" data-reveal><i>04</i> Services</span>
+      <div class="services__list">
+        <article class="service" data-reveal>
+          <span class="service__no">(01)</span>
+          <h3 data-cursor="wrap">Brand &amp; Identity</h3>
+          <p>Logos, systems and guidelines that give a brand a voice and a face — built to scale across every surface.</p>
+        </article>
+        <article class="service" data-reveal>
+          <span class="service__no">(02)</span>
+          <h3 data-cursor="wrap">Web Design &amp; Build</h3>
+          <p>Editorial, responsive websites designed and developed end-to-end with performance and craft in mind.</p>
+        </article>
+        <article class="service" data-reveal>
+          <span class="service__no">(03)</span>
+          <h3 data-cursor="wrap">Motion &amp; Interaction</h3>
+          <p>Micro-interactions, scroll choreography and animation that make an interface feel alive and intentional.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== PROCESS ===================== -->
+    <section class="process" id="process">
+      <span class="section-label" data-reveal><i>05</i> How I work</span>
+      <div class="process__list">
+        <article class="step" data-reveal>
+          <span class="step__no">(01)</span>
+          <h3>Discover</h3>
+          <p>We dig into the goal, the audience and the constraints. No pixels yet — just sharp questions and a clear brief.</p>
+        </article>
+        <article class="step" data-reveal>
+          <span class="step__no">(02)</span>
+          <h3>Define</h3>
+          <p>Direction, references and a system. We agree on the taste and tone before anything gets built.</p>
+        </article>
+        <article class="step" data-reveal>
+          <span class="step__no">(03)</span>
+          <h3>Design</h3>
+          <p>Layouts, type and motion come together. Iterative, opinionated, and always in the browser early.</p>
+        </article>
+        <article class="step" data-reveal>
+          <span class="step__no">(04)</span>
+          <h3>Deliver</h3>
+          <p>Built, tested and handed over — fast, accessible and easy for you to run after launch.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== TESTIMONIAL ===================== -->
+    <!-- <section class="quote" id="quote">
+      <span class="section-label section-label--light" data-reveal><i>✳</i> Kind words</span>
+      <blockquote class="quote__text" data-cursor="big">
+        <span data-words data-fill-from="#6b6459" data-fill-to="#ece7dd">“[Your Name] turned a vague idea into something we're genuinely proud of. The craft, the motion, the attention to detail — it all just felt right.”</span>
+      </blockquote>
+      <cite class="quote__cite" data-reveal>— [Client Name], [Role] at [Company]</cite>
+    </section> -->
+
+    <!-- ===================== CONTACT / FOOTER ===================== -->
+    <footer class="contact" id="contact">
+      <span class="section-label section-label--light" data-reveal><i>06</i> Contact</span>
+      <a href="mailto:chinmaywadhe26@gmail.com" class="contact__big" data-magnetic data-cursor="Email">
+        <span class="line" data-split>Let's make</span>
+        <span class="line" data-split>something <em>good.</em></span>
+      </a>
+
+      <div class="contact__row">
+        <div class="contact__block" data-reveal>
+          <h4>Get in touch</h4>
+          <a href="mailto:hello@example.com">chinmaywadhe26@gmail.com</a>
+          <a href="tel:+10000000000">+91 8669181447</a>
+        </div>
+        <div class="contact__block" data-reveal>
+          <h4>Socials</h4>
+          <!-- <a href="#" data-magnetic data-cursor="wrap">Instagram</a> -->
+          <a href="https://www.linkedin.com/in/chinmay-wadhe-139663262/" data-magnetic data-cursor="wrap">LinkedIn</a>
+        </div>
+        <div class="contact__block" data-reveal>
+          <h4>Elsewhere</h4>
+          <a href="https://github.com/chinmaywadhe26" data-magnetic data-cursor="wrap">GitHub</a>
+        </div>
+      </div>
+
+      <div class="contact__mega" data-mega>Chinmay</div>
+
+      <div class="contact__base">
+        <span>© <span id="year">2026</span> Chinmay Wadhe. All rights reserved.</span>
+         <span class="contact_time" id="localTime"></span>
+        <span>Built with taste, not templates.</span>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ===================== SCRIPTS ===================== -->
+  <script src="js/lib/gsap.min.js"></script>
+  <script src="js/lib/ScrollTrigger.min.js"></script>
+  <script src="js/lib/lenis.min.js"></script>
+  <script src="js/main.js?v=25"></script>
+</body>
+</html>
