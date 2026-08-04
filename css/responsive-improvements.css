@@ -1,0 +1,346 @@
+/* ========================================================
+   RESPONSIVE IMPROVEMENTS FOR PORTFOLIO
+   Better mobile/tablet coverage, touch-friendly interactions
+   ======================================================== */
+
+/* ---- MOBILE-FIRST BREAKPOINTS ---- */
+/* Mobile: <480px */
+/* Tablet: 480px - 1024px */
+/* Desktop: >1024px */
+
+/* ===================== MOBILE IMPROVEMENTS ===================== */
+@media (max-width: 480px) {
+  :root {
+    --pad: clamp(1rem, 3vw, 1.5rem);
+    --gap: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  /* Hero adjustments for small screens */
+  .hero {
+    min-height: auto;
+    padding-top: clamp(5rem, 12vh, 8rem);
+    padding-bottom: 1.5rem;
+  }
+  .hero__top {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .eyebrow--right {
+    text-align: left;
+  }
+  .hero__title {
+    font-size: clamp(2rem, 11vw, 3.2rem);
+    margin: 1.5rem 0;
+  }
+  .hero__title .line--indent {
+    margin-left: 0;
+  }
+  .hero__bottom {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .hero__lead {
+    font-size: 1rem;
+  }
+  .hero__badge {
+    width: clamp(80px, 10vw, 96px);
+  }
+
+  /* Marquee scaling */
+  .marquee__track span {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+  }
+
+  /* Statement text */
+  .statement__text {
+    font-size: clamp(1.4rem, 4vw, 1.8rem);
+  }
+  .statement__meta {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding-top: 1.5rem;
+  }
+
+  /* Stats - 2 columns on small mobile */
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 2rem var(--pad);
+  }
+  .stat__num {
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+
+  /* Work item grid */
+  .work__item a {
+    grid-template-columns: 3rem 1fr;
+    gap: 1rem;
+    padding: 1.2rem 0.5rem;
+  }
+  .work__name {
+    font-size: clamp(1.4rem, 5vw, 2rem);
+    grid-column: 1 / -1;
+    margin-top: 0.5rem;
+  }
+  .work__tags, .work__year {
+    font-size: 0.7rem;
+  }
+
+  /* Services - single column */
+  .services { padding: 2rem var(--pad); }
+  .service {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.5rem 0;
+  }
+  .service h3 {
+    font-size: clamp(1.3rem, 4vw, 1.8rem);
+  }
+  .service p {
+    font-size: 0.95rem;
+  }
+
+  /* Contact section */
+  .contact { padding: 2rem var(--pad) 1rem; }
+  .contact__big {
+    font-size: clamp(2rem, 10vw, 3rem);
+    margin-bottom: 2rem;
+  }
+  .contact__row {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  .contact__mega {
+    font-size: clamp(2.5rem, 16vw, 4rem);
+    margin: 1.5rem 0;
+  }
+
+  /* Experience */
+  .experience { padding: 2rem var(--pad); }
+  .exp {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .exp__role {
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+  }
+  .exp__desc {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Process */
+  .process { padding: 2rem var(--pad); }
+  .process__list {
+    grid-template-columns: 1fr;
+  }
+  .step {
+    padding: 1.5rem;
+  }
+  .step h3 {
+    font-size: clamp(1.3rem, 4vw, 1.8rem);
+  }
+
+  /* Nav improvements for mobile */
+  .nav {
+    padding: 1rem var(--pad);
+  }
+  .nav__brand {
+    font-size: 0.85rem;
+  }
+  .nav__mark {
+    font-size: 0.9rem;
+  }
+}
+
+/* ===================== TABLET IMPROVEMENTS ===================== */
+@media (min-width: 481px) and (max-width: 768px) {
+  :root {
+    --pad: clamp(1.5rem, 3vw, 2rem);
+    --gap: clamp(2rem, 5vw, 4rem);
+  }
+
+  /* Hero for tablets */
+  .hero {
+    min-height: 80svh;
+  }
+  .hero__top {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .hero__bottom {
+    gap: 1.5rem;
+  }
+
+  /* Stats in 2x2 grid */
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 1.5rem;
+  }
+
+  /* Work items */
+  .work__item a {
+    grid-template-columns: 3.5rem 1fr auto;
+  }
+  .work__name {
+    font-size: clamp(1.6rem, 5vw, 2.8rem);
+  }
+
+  /* Experience */
+  .exp {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Contact row */
+  .contact__row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Services */
+  .service {
+    grid-template-columns: 4rem 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* ===================== LARGE TABLET / SMALL DESKTOP ===================== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    --pad: clamp(2rem, 3.5vw, 3rem);
+    --gap: clamp(3rem, 5vw, 5rem);
+  }
+
+  .stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .contact__row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ===================== DESKTOP (already good, minor tweaks) ===================== */
+@media (min-width: 1025px) {
+  :root {
+    --pad: clamp(2rem, 4vw, 4rem);
+    --gap: clamp(3rem, 6vw, 7rem);
+  }
+
+  /* Keep existing desktop layouts */
+}
+
+/* ===================== TOUCH-FRIENDLY IMPROVEMENTS ===================== */
+@media (hover: none) and (pointer: coarse) {
+  /* Increase touch targets */
+  .nav__cta, .nav__burger, button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .work__item a {
+    padding: 1.5rem 1rem;
+  }
+
+  .contact__block a,
+  .exp__company {
+    padding: 0.5rem 0;
+  }
+
+  /* Simplify hover states on touch */
+  .work__item a:active {
+    background: rgba(216, 73, 43, 0.06);
+  }
+
+  /* Hide work preview on touch */
+  .work__preview {
+    display: none !important;
+  }
+
+  /* Disable cursor on touch */
+  .cursor { display: none !important; }
+}
+
+/* ===================== LANDSCAPE MODE ADJUSTMENTS ===================== */
+@media (max-height: 600px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+  }
+
+  .marquee { padding: 0.8rem 0; }
+
+  .nav {
+    padding: 0.8rem var(--pad);
+  }
+}
+
+/* ===================== ULTRA-WIDE SCREENS ===================== */
+@media (min-width: 1440px) {
+  :root {
+    --pad: 4rem;
+    --gap: 7rem;
+  }
+
+  .hero__title {
+    font-size: clamp(6rem, 14vw, 13rem);
+  }
+
+  .statement__text {
+    font-size: 4.2rem;
+  }
+}
+
+/* ===================== SMALL SCREENS (< 360px) ===================== */
+@media (max-width: 359px) {
+  :root {
+    --pad: 1rem;
+  }
+
+  .hero__title {
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+
+  .marquee__track span {
+    font-size: 1.2rem;
+  }
+
+  .work__index {
+    display: none;
+  }
+
+  .nav__links, .nav__cta {
+    display: none;
+  }
+
+  .work__item a {
+    grid-template-columns: 1fr;
+  }
+
+  .statement__meta {
+    padding-top: 1rem;
+  }
+}
+
+/* ===================== PRINT STYLES ===================== */
+@media print {
+  .preloader, .cursor, .grain, .nav, .menu,
+  .hero__badge, .scroll-progress,
+  .work__preview {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  a {
+    color: black;
+  }
+}

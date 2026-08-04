@@ -311,7 +311,11 @@ body.menu-open .nav__burger span:last-child { transform: translateY(-3.5px) rota
 
 @media (max-width: 760px) {
   .nav__links, .nav__cta { display: none; }
-  .nav__burger { display: flex; }
+  .nav__burger { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 /* ===================== MOBILE MENU ===================== */
